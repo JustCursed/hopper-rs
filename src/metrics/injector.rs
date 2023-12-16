@@ -9,14 +9,14 @@ pub struct MetricsError(#[from] pub Box<dyn std::error::Error + Send + Sync + 's
 
 #[async_trait]
 pub trait MetricsInjector: Send + Sync {
-    async fn log(&self, counters: &Counters) -> Result<(), MetricsError>;
+	async fn log(&self, counters: &Counters) -> Result<(), MetricsError>;
 }
 
 pub struct EmptyInjector;
 
 #[async_trait]
 impl MetricsInjector for EmptyInjector {
-    async fn log(&self, _: &Counters) -> Result<(), MetricsError> {
-        Ok(())
-    }
+	async fn log(&self, _: &Counters) -> Result<(), MetricsError> {
+		Ok(())
+	}
 }

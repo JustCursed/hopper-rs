@@ -7,21 +7,21 @@ pub(super) struct ResolvableAddr(#[serde(deserialize_with = "resolve_hostname")]
 
 fn resolve_hostname<'de, D>(deserializer: D) -> Result<SocketAddr, D::Error>
 where
-    D: Deserializer<'de>,
+	D: Deserializer<'de>,
 {
-    use serde::de::Error;
+	use serde::de::Error;
 
-    let inner = <String>::deserialize(deserializer)?;
+	let inner = <String>::deserialize(deserializer)?;
 
-    let mut addr = inner
-        .to_socket_addrs()
-        .map_err(|err| Error::custom(format!("invalid hostname format: {err}")))?;
+	let mut addr = inner
+		.to_socket_addrs()
+		.map_err(|err| Error::custom(format!("invalid hostname format: {err}")))?;
 
-    addr.next().ok_or_else(|| Error::missing_field("address"))
+	addr.next().ok_or_else(|| Error::missing_field("address"))
 }
 
 impl From<ResolvableAddr> for SocketAddr {
-    fn from(addr: ResolvableAddr) -> Self {
-        addr.0
-    }
+	fn from(addr: ResolvableAddr) -> Self {
+		addr.0
+	}
 }

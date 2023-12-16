@@ -1,0 +1,13 @@
+max_width = 100
+hard_tabs = true
+tab_spaces = 4
+newline_style = "Unix"
+use_small_heuristics = "Default"
+reorder_imports = true
+fn_call_width = 64
+attr_fn_like_width = 70
+struct_lit_width = 18
+struct_variant_width = 35
+array_width = 64
+chain_width = 64
+edition = "2021"
