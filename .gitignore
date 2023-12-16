@@ -2,6 +2,7 @@
 *bk
 routing.*
 Config.toml
+*.log
 
 # cargo flamegraph
 flamegraph.svg
